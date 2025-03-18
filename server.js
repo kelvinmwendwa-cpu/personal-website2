@@ -1,20 +1,20 @@
+require("dotenv").config(); // Load environment variables from .env file
 const express = require("express");
 const bodyParser = require("body-parser");
 const mysql = require("mysql");
 const multer = require("multer");
 const path = require("path");
 
-// Initialize Express app
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 
-// Database connection pool
+// Database connection pool using environment variables
 const db = mysql.createPool({
-  host: "localhost",
-  user: "root",
-  password: "Mwendwake123#", // Replace with your MySQL password
-  database: "portfolio",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   connectionLimit: 10
 });
 
